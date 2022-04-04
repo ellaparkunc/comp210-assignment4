@@ -3,6 +3,10 @@ package a4;
 public interface Heap {
   
   void insert(int p);
+
+  // it should go top to bottom, less to right: store using array
+  // make sure to start at index 1
+  //
   // Insert adds the element p to the heap.
   // 
   // In this heap the element is an int and IS the priority.
