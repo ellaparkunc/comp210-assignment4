@@ -161,6 +161,7 @@ public class MinHeap implements Heap {
   public void clear() { 
     /*Your code here */
     this.elts = new int[this.max];
+    this.size = 0;
   }
   
   public void build (int[] e, int ne) {
