@@ -39,6 +39,9 @@ public class MinHeap implements Heap {
   public void insert(int p){
     //Hint: remember to update size.  Also, remember that we skip index 0 in the array.
     /*Your code here */
+    if (size == max) {
+      return;
+    }
     elts[size + 1] = p;
     int location = size + 1;
     while (elts[location/2] > p && location != 1){
@@ -46,6 +49,7 @@ public class MinHeap implements Heap {
       elts[location/2] = p;
       location = location/2;
     }
+    size ++;
     //1. put p @ next empty slot in array, at size +1
     //location of p = variable that changes over time
     //while loop: while p is less than parent:
@@ -53,7 +57,6 @@ public class MinHeap implements Heap {
     //if yes, assign old elt to new location
       //assign new elt to old location
     //update location of p
-    size ++;
   }
   
   public void delFront(){
@@ -115,7 +118,12 @@ public class MinHeap implements Heap {
     //Return the element at the front (i.e., the smallest) element in the min-heap.
     //If the min-heap has no elements, throw an IllegalStateException.
     /*Your code here */
-    throw new IllegalStateException(); //Dummy return statement.  Remove (or move elsewhere) when you implement!
+    if (size == 0) {
+      throw new IllegalStateException();
+    }
+    else {
+      return elts[1];
+    }
   }
   
   public boolean empty( ) {
