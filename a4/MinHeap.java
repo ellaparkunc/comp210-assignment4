@@ -171,14 +171,63 @@ public class MinHeap implements Heap {
     clear();
     //2. load the elements in parameter "elts" into the heap
     //         array directly ( a O(N) copying action )
-    for (int i = 0; i < ne; i++) {
-      insert(e[i]);
+
+    for(int i=0; i<ne; i++) {
+      //take my 'this' element at i+1 and assign the first e element to it.
+      elts[i+1] = e[i];
+      size++;
     }
+    //start at parent of last index and work to root
+    for(int i=size/2; i>0; i--) {
+      helperbubble(i);
+    }
+    //helper method (from delFront) takes in location
+
+
     //third:  perform the "bubble down" operations that a build
     //         requires on the heap array
     // start w parent of last node, bubble down
   }  
-  
+
+  public void helperbubble(int location) {
+    while ((location *2) <= size) {
+      //while parent is greater than one child
+      int smaller = -1;
+      //if there is no right child (but there is a left child!)
+      if ((location *2)+1 > size) {
+        //compare to see if parent is greater than left child (end of array)
+        if (elts[location] > elts[location *2]) {
+          //save smaller element
+          int p = elts[location *2];
+          //to child, assign parent
+          elts[location *2] = elts[location];
+          //to parent, assign child
+          elts[location] = p;
+        }
+        break;
+      }
+      //if there is both a left and right child & one of them is smaller than parent
+      if (elts[location] > elts[(location *2)+1] || elts[location] > elts[(location *2)])  {
+        //swap with smaller child
+        if (elts[(location *2)+1] < elts[(location *2)]) {
+          smaller = (location *2)+1;
+        }
+        if (elts[(location *2)+1] >= elts[(location *2)]) {
+          smaller = (location *2);
+        }
+        //save smaller element
+        int p = elts[smaller];
+        //@ smaller location, assign parent
+        elts[smaller] = elts[location];
+        elts[location] = p;
+        //bubble down to where you just switched
+        location = smaller;
+      }
+      else {
+        break;
+      }
+    }
+  }
   public int[] sort() {
     // Hint: the smallest element will go in slot 0
     /*Your code here */
