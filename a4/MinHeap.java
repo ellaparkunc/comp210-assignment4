@@ -1,5 +1,5 @@
 package a4;
-
+//dheyam@unc.edu
 public class MinHeap implements Heap {
   
   private int size = 0; // number of elements currently in the heap
@@ -46,7 +46,9 @@ public class MinHeap implements Heap {
     int child = size + 1;
     //while parent (of last element) is greater than last element
     //elts[child/2] > p
+    System.out.println("inserted elt into array");
     while (child/2 >= 1){
+      System.out.println(elts[child/2]);
       if (elts[child/2] <= p) {
         return;
       }
@@ -148,18 +150,19 @@ public class MinHeap implements Heap {
 
   public int size() {
     /*Your code here */
-    return -1; //Dummy return statement.  Remove (or move elsewhere) when you implement!
+    return size;
   }
   
   public void clear() { 
     /*Your code here */
+    this.MinHeap = new MinHeap(this.max);
       //this.MinHeap = new MinHeap(this.max);
   }
   
   public void build (int[] e, int ne) {
     //Hint: remember to skip slot 0 in the heap array.
     /* Your code here */
-
+    //1. start w parent of last node, bubble down
   }  
   
   public int[] sort() {
