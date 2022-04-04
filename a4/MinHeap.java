@@ -38,7 +38,6 @@ public class MinHeap implements Heap {
 
   public void insert(int p){
     //Hint: remember to update size.  Also, remember that we skip index 0 in the array.
-    /*Your code here */
     if (size == max) {
       return;
     }
@@ -49,7 +48,8 @@ public class MinHeap implements Heap {
     System.out.println("inserted elt into array");
     while (child/2 >= 1){
       System.out.println(elts[child/2]);
-      if (elts[child/2] <= p) {
+      if (elts[child/2] <= elts[child]) {
+        size++;
         return;
       }
       //save parent's element
@@ -155,14 +155,22 @@ public class MinHeap implements Heap {
   
   public void clear() { 
     /*Your code here */
-    this.MinHeap = new MinHeap(this.max);
-      //this.MinHeap = new MinHeap(this.max);
+    this.elts = new int[this.max];
   }
   
   public void build (int[] e, int ne) {
     //Hint: remember to skip slot 0 in the heap array.
     /* Your code here */
-    //1. start w parent of last node, bubble down
+    //1. clear
+    clear();
+    //2. load the elements in parameter "elts" into the heap
+    //         array directly ( a O(N) copying action )
+    for (int i = 0; i < ne; i++) {
+      insert(e[i]);
+    }
+    //third:  perform the "bubble down" operations that a build
+    //         requires on the heap array
+    // start w parent of last node, bubble down
   }  
   
   public int[] sort() {
