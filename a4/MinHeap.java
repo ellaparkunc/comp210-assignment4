@@ -43,11 +43,15 @@ public class MinHeap implements Heap {
       return;
     }
     elts[size + 1] = p;
-    int location = size + 1;
-    while (elts[location/2] > p && location != 1){
-      elts[location] = elts[location/2];
-      elts[location/2] = p;
-      location = location/2;
+    int child = size + 1;
+    //while parent (of last element) is greater than last element
+    while (elts[child/2] > p && child != 1){
+      //save parent's element
+      int parent = elts[child/2];
+      //assign to parent's spot the child
+      elts[child/2] = elts[child];
+      elts[child] = parent;
+      child = child/2;
     }
     size ++;
     //1. put p @ next empty slot in array, at size +1
