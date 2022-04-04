@@ -47,7 +47,7 @@ public class MinHeap implements Heap {
     //while parent (of last element) is greater than last element
     //elts[child/2] > p
     while (child/2 >= 1){
-      if (elts[child/2] <= elts[child]) {
+      if (elts[child/2] <= p) {
         return;
       }
       //save parent's element
