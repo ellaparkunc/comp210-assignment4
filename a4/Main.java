@@ -20,7 +20,8 @@ public class Main {
       System.out.println(i);
     }
 
-    
+    hp.delFront();
+    hp.delFront();
     System.out.println("heap many inserts: ");
     Print.heap(hp);  // one form
     System.out.println(hp.size());

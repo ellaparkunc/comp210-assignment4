@@ -76,16 +76,29 @@ public class MinHeap implements Heap {
     elts[1] = elts[location];
     location = 1;
     //compare to size. there will never be a skip in the array, so we only need compare the right child
-    //if there is both a left and right child
-    if (elts[(location *2)+1] <= size) {
+    while ((location *2) < size) {
       //while parent is greater than one child
       int smaller = -1;
-      while (elts[location] > elts[(location *2)+1] || elts[location] > elts[(location *2)])  {
+      //if there is no right child (but there is a left child!)
+      if ((location *2)+1 > size) {
+        //compare to see if parent is greater than left child (end of array)
+        if (elts[location] > elts[location *2]) {
+          //save smaller element
+          int p = elts[location *2];
+          //to child, assign parent
+          elts[location *2] = elts[location];
+          //to parent, assign child
+          elts[location] = p;
+        }
+        break;
+      }
+      //if there is both a left and right child & one of them is smaller than parent
+      if (elts[location] > elts[(location *2)+1] || elts[location] > elts[(location *2)])  {
         //swap with smaller child
-        if (elts[(location *2)+1] > elts[(location *2)]) {
+        if (elts[(location *2)+1] < elts[(location *2)]) {
           smaller = (location *2)+1;
         }
-        if (elts[(location *2)+1] <= elts[(location *2)]) {
+        if (elts[(location *2)+1] >= elts[(location *2)]) {
           smaller = (location *2);
         }
         //save smaller element
@@ -96,19 +109,11 @@ public class MinHeap implements Heap {
         //bubble down to where you just switched
         location = smaller;
       }
-    }
-    //if there is only a left child
-    if (elts[(location *2)+1] <= size) {
-      //compare to see if parent is greater than left child
-      while (elts[location] > elts[location *2]) {
-        //save smaller element
-        int p = elts[location *2];
-        //to child, assign parent
-        elts[location *2] = elts[location];
-        //to parent, assign child
-        elts[location] = p;
+      else {
+        break;
       }
     }
+
     //if there are no children, do nothing
 
     //1. start with last node and move to i=1
@@ -122,7 +127,7 @@ public class MinHeap implements Heap {
     // start w parent of last node & bubble down?? ==build
     //2. but which one would i start with, the most left version?
     //3. most left=
-
+    size--;
   }
   
   public int getFront() throws IllegalStateException {
