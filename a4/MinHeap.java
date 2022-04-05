@@ -231,7 +231,7 @@ public class MinHeap implements Heap {
   public int[] sort() {
     // Hint: the smallest element will go in slot 0
     /*Your code here */
-    int[] n= new int[this.max];
+    int[] n= new int[this.size];
     int end = this.size;
     //i<this.size()
     for(int i = 0; i<end; i++){
