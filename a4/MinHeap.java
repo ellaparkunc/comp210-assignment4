@@ -231,7 +231,14 @@ public class MinHeap implements Heap {
   public int[] sort() {
     // Hint: the smallest element will go in slot 0
     /*Your code here */
-    return null;// Dummy return statement.  Remove (or move elsewhere) when you implement!
+    int[] n= new int[this.max];
+    int end = this.size;
+    //i<this.size()
+    for(int i = 0; i<end; i++){
+        n[i] = elts[1];
+        delFront();
+    }
+    return n;
   }
 
 }

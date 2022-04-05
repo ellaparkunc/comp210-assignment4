@@ -23,7 +23,13 @@ public class Main {
     hp.build(e,6);
     System.out.println("heap many inserts: ");
     Print.heap(hp);  // one form
-    System.out.println(hp.size());
+    int[] x = hp.sort();
+    int i = 0;
+    while(i<6) {
+      System.out.println(x[i]);
+      i++;
+    }
+    //System.out.println(hp.size());
 //    hp.build(e,6);
 //    System.out.println("heap magic build: ");
 //    Print.heap(hp);  // another form
